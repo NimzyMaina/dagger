@@ -297,6 +297,14 @@ Specify **App.java** as the application name in the manifest so that it to be in
 
 Have a look at the [**MainActivity.java**](https://github.com/NimzyMaina/dagger/blob/master/app/src/main/java/com/openshamba/dagger/MainActivity.java) in order to view how these dependencies are used inside an Activity.
 
+### SSL Bug on pre Lollipop devices
+
+I found an issue with SSL validation. This is the error I got:
+
+**SSLHandshakeException / SSLProtocolException: handshake aborted: Failure in SSL library, usually a protocol error (Android 4)** 
+
+Did a quick search and found a fix here [**support enabling TLSv1.2 on Android 4.1-4.4.**](https://github.com/square/okhttp/issues/2372)
+
 ### References
 1 [CodePath](https://guides.codepath.com/android/dependency-injection-with-dagger-2)
 
