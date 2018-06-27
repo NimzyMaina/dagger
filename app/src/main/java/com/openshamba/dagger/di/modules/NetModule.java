@@ -1,7 +1,6 @@
 package com.openshamba.dagger.di.modules;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -13,12 +12,13 @@ import com.google.gson.GsonBuilder;
 import com.openshamba.dagger.app.Config;
 import com.openshamba.dagger.infrastructure.AuthenticationInterceptor;
 import com.openshamba.dagger.infrastructure.Tls12SocketFactory;
+import com.openshamba.dagger.remote.GitHubClient;
+import com.openshamba.dagger.remote.models.GitHubRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.net.ssl.SSLContext;
@@ -30,13 +30,14 @@ import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.TlsVersion;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetModule {
 
-    String mBaseUrl;
+    private String mBaseUrl;
 
     // Constructor needs one parameter to instantiate.
     public NetModule(String baseUrl) {
@@ -168,6 +169,12 @@ public class NetModule {
         }
 
         return client;
+    }
+
+    @Provides
+    @Singleton
+    Call<List<GitHubRepo>> provideGithubClientCall(@Named("non_cached")Retrofit retrofit) {
+        return retrofit.create(GitHubClient.class).reposForUser("NimzyMaina");
     }
 
 }

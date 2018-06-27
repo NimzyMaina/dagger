@@ -13,5 +13,7 @@ import dagger.Component;
 public interface NetComponent {
 
     void inject(MainActivity activity);
+    // void inject(MyFragment fragment);
+    // void inject(MyService service);
 
 }

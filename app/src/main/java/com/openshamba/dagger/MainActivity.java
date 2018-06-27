@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
     @Inject @Named("non_cached")
     Retrofit retrofit;
+    @Inject
+    Call<List<GitHubRepo>> gitHub;
 
     TextView tv;
     ListView lv;
@@ -55,15 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void getRepos() {
         tv.setText("Getting github repos for NimzyMaina");
-        retrofit.create(GitHubClient.class).reposForUser("NimzyMaina").enqueue(new Callback<List<GitHubRepo>>() {
+        gitHub.enqueue(new Callback<List<GitHubRepo>>() {
             @Override
             public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                 if(response.isSuccessful()){
-//                    int i = 0;
                     for (GitHubRepo rep: response.body()) {
-//                        repoArray[i] = rep.getName();
                         mStrings.add(rep.getName());
-//                        i++;
                     }
                     ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_view, mStrings);
 
