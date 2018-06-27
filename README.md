@@ -295,7 +295,7 @@ Specify **App.java** as the application name in the manifest so that it to be in
 
 
 
-Have a look at the **MainActivity.java** in order to view how these dependencies are used inside an Activity.
+Have a look at the [**MainActivity.java**](https://github.com/NimzyMaina/dagger/blob/master/app/src/main/java/com/openshamba/dagger/MainActivity.java) in order to view how these dependencies are used inside an Activity.
 
 ### References
 1 [CodePath](https://guides.codepath.com/android/dependency-injection-with-dagger-2)
