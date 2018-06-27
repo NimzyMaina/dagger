@@ -1,6 +1,6 @@
 # Dependency Injection (DI) with Dagger 2
 
-This is an example of how to use dagger to provide dependencies in Android. In this example, **Retrofit 2** is used to get list of my Repos from the my **Github** account using their API. The repos are then displayed in a ListView.
+This is an example of how to use dagger to provide dependencies in Android. **Retrofit 2** is used to get list of my Repos from my **Github** account using their API. The repos are then displayed in a ListView.
 
 ## Installation
 
